@@ -9,19 +9,17 @@ def func(dp,sticker,i,j,n):
     if not dp[i][j] == -1:
         return dp[i][j]
 
-    tmp1, tmp2, tmp3 = 0, 0, 0
+    tmp1, tmp2= 0, 0
     if i == 0:
         tmp1 = func(dp, sticker, i+1, j+1,n)
         if j+2 < n:
-            tmp2 = func(dp,sticker, i, j+2, n)
-            tmp3 = func(dp, sticker, i+1,j+2, n)
-        dp[i][j] = max(tmp1, tmp2, tmp3) + sticker[i][j]
+            tmp2 = func(dp, sticker, i+1,j+2, n)
+        dp[i][j] = max(tmp1, tmp2) + sticker[i][j]
     elif i == 1:
         tmp1 = func(dp, sticker, i - 1, j + 1, n)
         if j + 2 < n:
-            tmp2 = func(dp, sticker, i, j + 2, n)
-            tmp3 = func(dp, sticker, i - 1, j + 2, n)
-        dp[i][j] = max(tmp1, tmp2, tmp3) + sticker[i][j]
+            tmp2 = func(dp, sticker, i - 1, j + 2, n)
+        dp[i][j] = max(tmp1, tmp2) + sticker[i][j]
 
     return dp[i][j]
 
