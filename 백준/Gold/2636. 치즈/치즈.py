@@ -7,6 +7,8 @@ board = [list(map(int, input().split())) for _ in range(n)]
 hour = 0
 cnt = 0
 
+d = [[1,0],[-1,0],[0,1],[0,-1]]
+
 def checkChease(arr):
     tmpCnt = 0
     for i in range(n):
@@ -27,14 +29,14 @@ while True:
         stack = list()
         stack.append((0,0))
         visited = list([0]*m for _ in range(n))
-        while len(stack) > 0:
+        while stack:
             i,j = stack.pop()
-            visited[i][j] = 1
-            for dx,dy in [[1,0],[-1,0],[0,1],[0,-1]]:
+            for dx,dy in d:
                 ni, nj = i+dx, j+dy
                 if 0<=ni<n and 0<=nj<m and visited[ni][nj] == 0:
                     if board[ni][nj] == 0:
                         stack.append((ni,nj))
+                        visited[i][j] = 1
                     else:
                         board[ni][nj] = 2
 
