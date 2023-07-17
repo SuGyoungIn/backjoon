@@ -10,8 +10,6 @@ for _ in range(n):
 answer = 0
 
 for i in range(n):
-    if sushi[i] == c:
-        continue
     res = 0
     candi = []
 
@@ -19,11 +17,10 @@ for i in range(n):
         candi = sushi[i:i+k]
     else:
         candi = sushi[i:n] + sushi[:i+k-n]
-
-    arr = list(set(candi))
-    res = len(arr)
-    if c not in arr:
-        res += 1
+        
+    setCandi = set(candi)
+    setCandi.add(c)
+    res = len(setCandi)
 
     if answer < res:
         answer = res
