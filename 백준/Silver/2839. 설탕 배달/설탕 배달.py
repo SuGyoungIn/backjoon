@@ -1,18 +1,17 @@
 n = int(input())
 
-res = 5000
-candiFive = n // 5
-candiThree = (n - (5 * candiFive))//3
+f = n // 5
+t = (n - (5 * f))//3
 
-while candiFive > 0:
-    if (5 * candiFive) + (3 * candiThree) == n:
+while f > 0:
+    if (5 * f) + (3 * t) == n:
         break
 
-    candiFive -= 1
-    tmp = n - (5 * candiFive)
-    candiThree = tmp // 3
+    f -= 1
+    tmp = n - (5 * f)
+    t = tmp // 3
 
-if (5 * candiFive) + (3 * candiThree) != n:
+if (5 * f) + (3 * t) != n:
     print(-1)
 else:
-    print(candiFive+candiThree)
+    print(f+t)
