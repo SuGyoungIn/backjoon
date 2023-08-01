@@ -5,7 +5,7 @@ n = int(input())
 for _ in range(n):
     ps = list(input().rstrip())
     stack = []
-    if len(ps) % 2:
+    if len(ps) % 2 == 1:
         print('NO')
     else:
         for p in ps:
