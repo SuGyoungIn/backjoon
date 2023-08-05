@@ -20,8 +20,6 @@ def dfs(idx,board):
 
 
 res = 0
-for i in range(n):
-    board = [-1] * n
-    board[0] = i
-    res += dfs(0,board)
+board = [-1] * n
+res += dfs(-1,board)
 print(res)
