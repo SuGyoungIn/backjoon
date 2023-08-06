@@ -1,16 +1,14 @@
+import sys
+input = sys.stdin.readline
 n = int(input())
-arr = list(map(int, input().split()))
-dp = [0]*n
+arr = list(map(int,input().split()))
 
-dp[0] = 1
-
+cnt = [1]*n
 for i in range(1,n):
-    cV = arr[i]
-    maxV = 0
-    for j in range(i):
-        if arr[j] < cV:
-            if maxV < dp[j]:
-                maxV = dp[j]
-    dp[i] = maxV + 1
+    tmp = 0
+    for j in range(i,-1,-1):
+        if arr[i] > arr[j] and cnt[j] > tmp:
+            tmp = cnt[j]
+    cnt[i] = tmp + 1
 
-print(max(dp))
+print(max(cnt))
