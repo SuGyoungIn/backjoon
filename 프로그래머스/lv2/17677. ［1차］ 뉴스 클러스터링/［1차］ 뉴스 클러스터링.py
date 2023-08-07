@@ -1,12 +1,11 @@
 import math
-alpha = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
 def doubleStr(strArr,dic):
     global union
     for i in range(1,len(strArr)):
         front = strArr[i-1].lower()
         now = strArr[i].lower()
-        if front in alpha and now in alpha:
+        if front.isalpha() and now.isalpha():
             tmp = front+now
             union += 1
             if tmp in dic:
