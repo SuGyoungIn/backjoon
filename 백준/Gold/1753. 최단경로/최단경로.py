@@ -9,7 +9,6 @@ for _ in range(E):
     u,v,w = map(int,input().split())
     graph[u].append((v,w))
 
-
 res = [3000001]*(V+1)
 heap = []
 heappush(heap,(0,s))
