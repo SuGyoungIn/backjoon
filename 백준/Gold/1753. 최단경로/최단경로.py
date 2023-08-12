@@ -7,17 +7,7 @@ s = int(input())
 graph = [[] for _ in range(V+1)]
 for _ in range(E):
     u,v,w = map(int,input().split())
-    if graph[u]:
-        for i in range(len(graph[u])):
-            v1,w1 = graph[u][i]
-            if v1 == v:
-                if w1 > w:
-                    graph[u][i] = (v,w)
-                break
-        else:
-            graph[u].append((v,w))
-    else:
-        graph[u].append((v,w))
+    graph[u].append((v,w))
 
 
 res = [3000001]*(V+1)
