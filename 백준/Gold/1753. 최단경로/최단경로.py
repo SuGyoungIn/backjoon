@@ -20,7 +20,7 @@ for _ in range(E):
         graph[u].append((v,w))
 
 
-res = [-1]*(V+1)
+res = [3000001]*(V+1)
 heap = []
 heappush(heap,(0,s))
 res[s] = 0
@@ -28,15 +28,12 @@ while heap:
     weight, now = heappop(heap)
     for point in graph[now]:
         v,w = point
-        if res[v] == -1:
+        if res[v] > weight + w:
             res[v] = weight + w
             heappush(heap,(weight+w,v))
-        elif res[v] > -1 and res[v] >= weight + w:
-            res[v] = weight + w
-            heappush(heap, (weight + w, v))
 
 for i in range(1,V+1):
-    if res[i] > -1:
+    if res[i] < 3000001:
         print(res[i])
     else:
         print('INF')
