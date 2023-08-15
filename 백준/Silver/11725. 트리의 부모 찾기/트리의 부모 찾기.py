@@ -12,14 +12,14 @@ for _ in range(n-1):
 
 q = deque()
 v = [0] * (n+1)
-q.append((0,1))
+q.append(1)
 v[1] = 1
 while q:
-    parent,now = q.popleft()
+    now = q.popleft()
     for node in tree[now]:
         if v[node] == 0:
             v[node] = now
-            q.append((now,node))
+            q.append(node)
 
 for i in range(2,n+1):
     print(v[i])
