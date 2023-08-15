@@ -17,7 +17,7 @@ v[1] = 1
 while q:
     now = q.popleft()
     for node in tree[now]:
-        if v[node] == 0:
+        if not v[node]:
             v[node] = now
             q.append(node)
 
