@@ -19,17 +19,19 @@ for _ in range(m):
 q = deque()
 res = []
 
-for i in range(1, n+1):
+for i in range(1,n+1):
     if E[i] == 0:
         q.append(i)
+        E[i] = -1
 
 while q:
     now = q.popleft()
-    res.append(now)
     if graph[now]:
         for node in graph[now]:
             E[node] -= 1
             if E[node] == 0:
                 q.append(node)
+                E[node] = -1
+    res.append(now)
 
 print(*res)
