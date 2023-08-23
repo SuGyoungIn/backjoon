@@ -8,11 +8,6 @@ E = [0]*(n+1)
 
 for _ in range(m):
     a,b = map(int,input().split())
-    if E[a] == n+1:
-        E[a] = 0
-    if E[b] == n+1:
-        E[b] = 0
-
     E[b] += 1
     graph[a].append(b)
 
@@ -20,18 +15,17 @@ q = deque()
 res = []
 
 for i in range(1,n+1):
-    if E[i] == 0:
+    if not E[i]:
         q.append(i)
-        E[i] = -1
 
 while q:
     now = q.popleft()
     if graph[now]:
         for node in graph[now]:
             E[node] -= 1
-            if E[node] == 0:
+            if not E[node]:
                 q.append(node)
-                E[node] = -1
+
     res.append(now)
 
 print(*res)
