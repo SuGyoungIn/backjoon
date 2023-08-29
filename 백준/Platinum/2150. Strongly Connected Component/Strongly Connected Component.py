@@ -1,5 +1,5 @@
 import sys
-sys.setrecursionlimit(10**6)
+sys.setrecursionlimit(10**4)
 input = sys.stdin.readline
 
 v,e = map(int,input().split())
@@ -47,5 +47,4 @@ while stack:
 
 print(len(res))
 for r in sorted(res):
-    r.append(-1)
-    print(*r)
+    print(*r, -1)
