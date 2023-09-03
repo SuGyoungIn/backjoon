@@ -1,7 +1,6 @@
 import sys
-sys.setrecursionlimit(10**6)
+sys.setrecursionlimit(10**4)
 n = int(input())
-
 
 def hanoi(cnt,start,goal,other):
     if cnt == 1:
