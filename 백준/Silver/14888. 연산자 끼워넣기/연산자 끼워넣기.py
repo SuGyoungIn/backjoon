@@ -1,44 +1,45 @@
-from itertools import permutations
-from collections import deque
-
-
-def f(op, arr):
-    q = deque(arr)
-
-    for o in op:
-        a = q.popleft()
-        b = q.popleft()
-
-        if o == '+':
-            q.appendleft(a+b)
-        elif o == '-':
-            q.appendleft(a-b)
-        elif o == '*':
-            q.appendleft(a*b)
-        else:
-            if a < 0 and b > 0:
-                q.appendleft(-(-a//b))
-            else:
-                q.appendleft(a // b)
-    return q[0]
-
-
 n = int(input())
-arr = list(map(int, input().split()))
-operator = list(map(int, input().split()))
+num = list(map(int,input().split()))
 
-oper =(['+']*operator[0]) + (['-']*operator[1]) + (['*']*operator[2]) + (['/']*operator[3])
-
-maxV = -(10**9)
+op = list(map(int,input().split()))
 minV = 10**9
+maxV = -(10**9)
 
-for op in permutations(oper,n-1):
-    res = f(op, arr)
-    if res > maxV:
-        maxV = res
+def calc(res,nextIdx,plus,minus,multi,div):
+    global minV
+    global maxV
 
-    if res < minV:
-        minV = res
+    if nextIdx == n:
+        if res < minV:
+            minV = res
+        if res > maxV:
+            maxV = res
+        return
+
+    if plus > 0:
+        tmp = res
+        tmp += num[nextIdx]
+        calc(tmp,nextIdx+1,plus-1,minus,multi,div)
+    if minus > 0:
+        tmp = res
+        tmp -= num[nextIdx]
+        calc(tmp,nextIdx+1,plus,minus-1,multi,div)
+    if multi > 0:
+        tmp = res
+        tmp *= num[nextIdx]
+        calc(tmp,nextIdx+1,plus,minus,multi-1,div)
+    if div > 0:
+        tmp = res
+        if tmp < 0:
+            tmp *= -1
+            tmp //= num[nextIdx]
+            calc(-tmp, nextIdx + 1, plus, minus, multi, div - 1)
+        else:
+            tmp //= num[nextIdx]
+            calc(tmp,nextIdx+1,plus,minus,multi,div-1)
+
+
+calc(num[0],1,op[0],op[1],op[2],op[3])
 
 print(maxV)
 print(minV)
