@@ -1,15 +1,16 @@
 import sys
-input = sys.stdin.readline
-n,m = map(int,input().split())
-res = 0
-S = set()
-for _ in range(n):
-    S.add(input())
 
-for _ in range(m):
-    tmp = []
-    tmp.append(input())
-    tmp = set(tmp)
-    if S & tmp:
-        res += 1
-print(res)
+n, m = map(int, sys.stdin.readline().rstrip().split())
+
+s = [sys.stdin.readline().rstrip() for _ in range(n)]
+list_m = [sys.stdin.readline().rstrip() for _ in range(m)]
+
+cnt = 0
+set_s = set(s)
+for val in list_m:
+    list_m = val.split(' ')
+    set_m = set(list_m)
+    if len(set_s & set_m):
+        cnt += 1
+
+print(cnt)
